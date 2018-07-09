@@ -1,0 +1,204 @@
+<app-header></app-header>
+<section class="inner-header divider parallax layer-overlay overlay-white-8" style="background-image: url(../../../assets/images/bg/bg6.jpg);" data-bg-img="images/bg/bg6.jpg">
+  <div class="container pt-60 pb-60">
+    <!-- Section Content -->
+    <div class="section-content">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h3 class="font-28">{{ u.firstName }}'s profile </h3>
+          <ol class="breadcrumb text-center text-black mt-10">
+            <li><a href="#">Home</a></li>
+            <li class="active text-theme-colored">{{ u.firstName }} {{ u.lastName }}</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>      
+</section>
+
+<section>
+  <div class="container">
+    <div class="row">
+  
+      <div class="col-md-3">
+        <img src="assets/uploads/users/{{u.photo}}" alt="">
+        <div class="job-overview">
+          <dl class="dl-horizontal">
+            <dt><i class="fa fa-envelope text-theme-colored mt-5 font-15"></i></dt>
+            <dd>
+              <h5 class="mt-0">Email address:</h5>
+              <click-to-edit [value]="u?.email" (onSave)="ModifiyMember(u,$event,'email')"></click-to-edit>
+            </dd>
+          </dl>
+          <dl class="dl-horizontal">
+            <dt><i class="fa fa-user text-theme-colored mt-5 font-15"></i></dt>
+            <dd>
+              <h5 class="mt-0">Username:</h5>
+              <click-to-edit [value]="u?.login" (onSave)="ModifiyMember(u,$event,'login')"></click-to-edit>
+            </dd>
+          </dl>
+          <dl class="dl-horizontal">
+            <dt><i class="fa fa-phone text-theme-colored mt-5 font-15"></i></dt>
+            <dd>
+              <h5 class="mt-0">Phone number:</h5>
+              <click-to-edit [value]="u?.phoneNumber" (onSave)="ModifiyMember(u,$event,'phoneNumber')"></click-to-edit>
+            </dd>
+          </dl>
+          <dl class="dl-horizontal">
+            <dt><i class="fa fa-clock-o text-theme-colored mt-5 font-15"></i></dt>
+            <dd>
+              <h5 class="mt-0">Last time you logged in </h5>
+              <p>{{ u.lastLogin }}</p>
+            </dd>
+          </dl>
+          <dl class="dl-horizontal">
+            <dt><i class="fa fa-map-marker text-theme-colored mt-5 font-15"></i></dt>
+            <dd>
+              <h5 class="mt-0">Location:</h5>
+              <div style="display: flex;">
+               <click-to-edit [value]="u.address.zip" (onSave)="ModifiyAddress(u,$event,'zip')"></click-to-edit>  
+               <click-to-edit [value]="u.address.city" (onSave)="ModifiyAddress(u,$event,'city')"></click-to-edit> 
+              </div>
+              <div style="display: flex;">
+               <click-to-edit [value]="u.address.street" (onSave)="ModifiyAddress(u,$event,'street')"></click-to-edit><br>
+               <click-to-edit [value]="u.address.country" (onSave)="ModifiyAddress(u,$event,'country')"></click-to-edit> 
+              </div>
+            </dd>
+          </dl>
+          <a class="btn btn-flat btn-theme-colored text-uppercase mt-20 mb-sm-30 border-left-theme-color-2-4px" style="width: 84%;" routerLink="/animals">My Animals</a>
+          <button class="btn btn-flat btn-theme-colored text-uppercase mt-20 mb-sm-30 border-left-theme-color-2-4px" style="width: 204px;" data-toggle="modal" data-target="#myModal" >Change password</button>
+          <button class="btn btn-flat btn-theme-colored text-uppercase mt-20 mb-sm-30 border-left-theme-color-2-4px" (click)="clicked($event)">Deactivate account</button>
+          
+        </div>
+      </div>
+      <div class="col-md-9">
+        <div class="icon-box mb-0 p-0">
+          <a href="#" class="icon icon-gray pull-left mb-0 mr-10">
+            <i class="pe-7s-users"></i>
+          </a>
+          <h3 class="icon-box-title pt-15 mt-0 mb-40">{{ u.firstName }} {{ u.lastName }}</h3>
+          <hr>
+          <p class="text-gray">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi id perspiciatis facilis nulla possimus quasi, amet qui. Ea rerum officia, aspernatur nulla neque nesciunt alias repudiandae doloremque, dolor, quam nostrum laudantium earum illum odio quasi excepturi mollitia corporis quas ipsa modi nihil, ad ex tempore.</p>
+          <p class="text-gray">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi id perspiciatis facilis nulla possimus quasi, amet qui. Ea rerum officia, aspernatur nulla.</p>
+        </div>
+        <div class="container pb-10">
+          <div class="section-title text-center">
+            <div class="row">
+              <div class="col-md-12">
+                <h2 class="mt-0 line-height-1">My <span class="text-theme-colored"> Pets</span></h2>
+              </div>
+            </div>
+          </div>
+          <div class="section-content">
+            <div class="row">
+              <div class="col-md-12">
+  
+                <!-- Portfolio Gallery Grid -->
+                <div id="grid" class="gallery-isotope grid-3 gutter-30 clearfix">
+  
+                  <!-- Portfolio Item Start -->
+                  <div class="gallery-item photography branding col-md-3" style="width: 290px;">
+                    <div class="thumb">
+                      <img class="img-fullwidth" src="../../../assets/images/portfolio/p1.jpg" alt="project">
+                      <div class="overlay-shade"></div>
+                      <div class="icons-holder">
+                        <div class="icons-holder-inner">
+                          <div class="styled-icons icon-sm icon-dark icon-circled icon-theme-colored">
+                            <a data-lightbox="image" href="../../../assets/images/portfolio/p1.jpg"><i class="fa fa-plus"></i></a>
+                          </div>
+                        </div>
+                      </div>
+                      <a class="hover-link" data-lightbox="image" href="../../../assets/images/portfolio/p1.jpg">View more</a>
+                    </div>
+                    <div class="portfolio-description">
+                      <h4 class="title mb-5"><a href="#">Beagle</a></h4>
+                      <span class="category">Sex : Male</span>
+                      <span class="category"> Age : 1 Year</span>
+                      <a href="#" class="btn btn-flat btn-theme-colored text-uppercase mt-20 mb-sm-30 border-left-theme-color-2-4px">Details</a>
+                      
+                    </div>
+                  </div>
+                  <!-- Portfolio Item End -->
+  
+                  <!-- Portfolio Item Start -->
+                  <div class="gallery-item photography branding col-md-3" style="width: 290px;">
+                    <div class="thumb">
+                      <img class="img-fullwidth" src="../../../assets/images/portfolio/p2.jpg" alt="project">
+                      <div class="overlay-shade"></div>
+                      <div class="icons-holder">
+                        <div class="icons-holder-inner">
+                          <div class="styled-icons icon-sm icon-dark icon-circled icon-theme-colored">
+                            <a data-lightbox="image" href="../../../assets/images/portfolio/p2.jpg"><i class="fa fa-plus"></i></a>
+                          </div>
+                        </div>
+                      </div>
+                      <a class="hover-link" data-lightbox="image" href="../../../assets/images/portfolio/p2.jpg">View more</a>
+                    </div>
+                    <div class="portfolio-description">
+                      <h4 class="title mb-5"><a href="#">Germah Shephered</a></h4>
+                      <span class="category">Sex : Female</span>
+                      <span class="category"> Age : 6 Months</span>
+                      <a href="#" class="btn btn-flat btn-theme-colored text-uppercase mt-20 mb-sm-30 border-left-theme-color-2-4px">Details</a>
+                      
+                    </div>
+                  </div>
+                  <!-- Portfolio Item End -->
+  
+                  <!-- Portfolio Item Start -->
+                  <div class="gallery-item photography branding col-md-3" style="width: 290px;">
+                    <div class="thumb">
+                      <img class="img-fullwidth" src="../../../assets/images/portfolio/p3.jpg" alt="project">
+                      <div class="overlay-shade"></div>
+                      <div class="icons-holder">
+                        <div class="icons-holder-inner">
+                          <div class="styled-icons icon-sm icon-dark icon-circled icon-theme-colored">
+                            <a data-lightbox="image" href="../../../assets/images/portfolio/p3.jpg"><i class="fa fa-plus"></i></a>
+                          </div>
+                        </div>
+                      </div>
+                      <a class="hover-link" data-lightbox="image" href="../../../assets/images/portfolio/p3.jpg">View more</a>
+                    </div>
+                    <div class="portfolio-description">
+                      <h4 class="title mb-5"><a href="#">Bengal</a></h4>
+                      <span class="category">Sex : Female</span>
+                      <span class="category"> Age : 5 Months</span>
+                      <a href="#" class="btn btn-flat btn-theme-colored text-uppercase mt-20 mb-sm-30 border-left-theme-color-2-4px">Details</a>
+                      
+                    </div>
+                  </div>
+                  <!-- Portfolio Item End -->
+  
+                </div>
+                <!-- End Portfolio Gallery Grid -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  
+</section>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Change your password </h4>
+        </div>
+        <div class="modal-body">
+         <app-change-password></app-change-password>
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <app-maps></app-maps>

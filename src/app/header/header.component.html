@@ -1,0 +1,130 @@
+<!-- Header -->
+<header id="header" class="header">
+        <div class="header-top bg-theme-colored sm-text-center hideFooter">
+          <div class="container">
+            <div class="row">
+      
+              <div class="col-md-4">
+                <div class="widget no-border m-0">
+                  <ul class="styled-icons icon-dark icon-circled icon-theme-colored icon-sm pull-left flip sm-pull-none sm-text-center mt-sm-15">
+                    <li><a href="#"><i class="fa fa-facebook text-white"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter text-white"></i></a></li>
+                    <li><a href="#"><i class="fa fa-dribbble text-white"></i></a></li>
+                    <li><a href="#"><i class="fa fa-instagram text-white"></i></a></li>
+                    <li><a href="#"><i class="fa fa-linkedin text-white"></i></a></li>
+                  </ul>
+                </div>
+              </div>
+              <div style="display: inline-flex;
+              margin-left: 71%;margin-bottom: 1%;">
+                <div class="col-md-8" *ngIf="connected == false">
+                    <div class="text-white sm-text-center no-border m-5 text-right widget-title"> <a routerLink="/login/nothing" style="color: whitesmoke;"><i class="fa fa-sign-in text-white mr-5"></i>Sign in</a></div>
+                </div>
+                <div class="col-md-8" *ngIf="connected == true">
+                    <div class="text-white sm-text-center no-border m-5 text-right widget-title"> <a routerLink="/profile-member"  style="color: whitesmoke;"><i class="fa fa-user text-white mr-5"></i>Profile</a></div>
+                </div>
+                <div class="col-md-8"  *ngIf="connected == false">
+                        <div class="text-white sm-text-center no-border m-5 text-right widget-title" style="width: 96%;"> <a routerLink="/register" style="color: whitesmoke;"><i class="fa fa-user-plus  text-white mr-5"></i>Register</a></div>
+                </div>
+                <div class="col-md-8"  *ngIf="connected == true">
+                  <div class="text-white sm-text-center no-border m-5 text-right widget-title" style="width: 105%;"> <a (click)="logout($event)"  style="color: whitesmoke;" ><i class="fa fa-sign-out  text-white mr-5"></i>Logout</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="header-nav">
+          <div class="header-nav-wrapper navbar-scrolltofixed bg-white">
+            <div class="container">
+              <nav id="menuzord-right" class="menuzord green no-bg"><a class="menuzord-brand pull-left flip xs-pull-center mb-15" href="index-mp-layout1.html"><img src="assets/images/logo-wide.png" alt=""></a>
+                <ul class="menuzord-menu" style="margin-left: 20%;">
+                  <li class="active"><a href="#home">Home</a>
+                  </li>
+                  <li *ngIf="connected == true">
+                    <a routerLink="/fundraisers">Fundraisers</a>    
+                  </li>
+                  <li *ngIf="connected == true">
+                    <a routerLink="/offers">Adoption Offers</a>
+                  </li>
+                  <li><a href="#">Lost & Found</a>
+                    <ul class="dropdown">
+                      <li><a href="page-gallery-3col.html">3 Columns</a></li>
+                      <li><a href="page-gallery-3col-only-image.html">3 Columns Only Image</a></li>
+                      <li><a href="page-gallery-4col.html">4 Columns</a></li>
+                      <li><a href="page-gallery-4col-only-image.html">4 Columns Only Image</a></li>
+                      <li><a href="page-gallery-grid.html">Grids (2-10 Columns)</a></li>
+                      <li><a href="page-gallery-grid-animation.html">Grids with Animation (2-10 Columns)</a></li>
+                      <li><a href="page-gallery-3col-tiles.html">3 Columns Tiles</a></li>
+                      <li><a href="page-gallery-4col-tiles.html">4 Columns Tiles</a></li>
+                      <li><a href="page-gallery-masonry-tiles.html">Tiles (2-10 Columns)</a></li>
+                      <li><a href="page-gallery-masonry-tiles-animation.html">Tiles with Animation (2-10 Columns)</a></li>
+                      <li><a href="page-gallery-prettyphoto.html">Pretty Photo Gallery</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="#">Breeding</a>
+                    <ul class="dropdown">
+                      <li><a href="#">Blog Classic</a>
+                        <ul class="dropdown">
+                          <li><a href="blog-classic-no-sidebar.html">Blog Classic No Sidebar</a></li>
+                          <li><a href="blog-classic-left-sidebar.html">Blog Classic Left Sidebar</a></li>
+                          <li><a href="blog-classic-right-sidebar.html">Blog Classic Right Sidebar</a></li>
+                          <li><a href="blog-classic-both-sidebar.html">Blog Classic Both Sidebar</a></li>
+                          <li><a href="blog-classic-left-thumbs.html">Blog Classic Left Thumbs</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="#">Blog Grid</a>
+                        <ul class="dropdown">
+                          <li><a href="blog-grid-2-column.html">Blog Grid 2 Column</a></li>
+                          <li><a href="blog-grid-3-column.html">Blog Grid 3 Column</a></li>
+                          <li><a href="blog-grid-4-column.html">Blog Grid 4 Column</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="#">Blog Masonry</a>
+                        <ul class="dropdown">
+                          <li><a href="blog-masonry-2-column.html">Blog Masonry 2 Column</a></li>
+                          <li><a href="blog-masonry-3-column.html">Blog Masonry 3 Column</a></li>
+                          <li><a href="blog-masonry-4-column.html">Blog Masonry 4 Column</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="#">Blog Single</a>
+                        <ul class="dropdown">
+                          <li><a href="blog-single-no-sidebar.html">Blog Single No Sidebar</a></li>
+                          <li><a href="blog-single-left-sidebar.html">Blog Single Left Sidebar</a></li>
+                          <li><a href="blog-single-right-sidebar.html">Blog Single Right Sidebar</a></li>
+                          <li><a href="blog-single-both-sidebar.html">Blog Single Both Sidebar</a></li>
+                          <li><a href="blog-single-disqus-comments.html">Blog Single Discuss Comments</a></li>
+                          <li><a href="blog-single-facebook-comments.html">Blog Single Facebook Comments</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="#">Blog Infinity Scroll</a>
+                        <ul class="dropdown">
+                          <li><a href="blog-extra-infinity-scroll.html">Blog Infinity Scroll Default</a></li>
+                          <li><a href="blog-extra-infinity-scroll-lazyload.html">Blog Infinity Scroll Lazyload</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="#">Blog Timeline</a>
+                        <ul class="dropdown">
+                          <li><a href="blog-timeline.html">Blog Timeline Default</a></li>
+                          <li><a href="blog-timeline-masonry.html">Blog Timeline Masonry</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li *ngIf="connected == true"><a routerLink="/profile-member">Profile</a>
+                    <ul class="dropdown">
+                      <li><a href="page-contact1.html">Contact style 1</a></li>
+                      <li><a href="page-contact2.html">Contact style 2</a></li>
+                      <li><a href="page-contact3.html">Contact style 3</a></li>
+                      <li><a href="page-contact4.html">Contact style 4</a></li>
+                      <li><a href="page-contact5-with-multiple-marker.html">Contact 5 - Multiple Marker</a></li>
+                      <li><a href="page-contact6-with-multiple-marker.html">Contact 6 - Multiple Marker</a></li>
+                    </ul>
+                  </li>
+                  
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </header>
+      

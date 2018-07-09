@@ -1,0 +1,49 @@
+  <!-- Start main-content -->
+  <app-header></app-header>
+  <div class="alert alert-success" *ngIf="myParam=='activated'" style="margin-bottom: 0%;text-align: center;">
+      <strong>Congratulations !</strong> Your account has been unlocked you can sign in now.
+  </div>
+  <div class="alert alert-warning" *ngIf="myParam=='waitingForConfirmation'" style="margin-bottom: 0%;text-align: center;">
+      <strong>Oups !</strong> You didn't activate your account after registration. 
+      <button type="button" class="btn btn-success" (click)="activate($event)" >Do it now !</button>
+  </div>
+  <div class="alert alert-danger" *ngIf="myParam=='desactivated'" style="margin-bottom: 0%;text-align: center;">
+      <strong>Be carefull !</strong> You have desactivated your account.
+      <button type="button" class="btn btn-success" (click)="activate($event)">Activate it now !</button>
+  </div>
+  <div class="alert alert-danger" *ngIf="myParam=='failed'" style="margin-bottom: 0%;text-align: center;">
+    <strong>Be carefull !</strong> Email or password failed.
+  </div>
+
+  <div class="main-content  background-cats" style="background-image: url(../../assets/images/sign-in-cat.jpg); margin-left: 80px;">
+      <div class="container">
+     
+          <div class="row mt-20 mb-20" style="margin-left: -95px;padding-top: 97px;">
+            <div style="width:55%;margin-bottom:200px;" class="pull-left"> <div class="card" style="background-color:white; box-shadow: 5px 5px 2px 2px rgba(0, 0, 0, 0.351);padding:20px;">   
+                <h1 class="widget-title text-black ">Sign in</h1>
+                  <div class="form-row align-items-center">
+                    <form class="m-b-10" (ngSubmit)="login(username,password)">
+                      <div class="col-auto mb-20">
+                        <label class="sr-only" for="inlineFormInputGroup">Username</label>
+                        <div class="input-group mb-2 mb-sm-0 form-group">
+                          <div class="input-group-addon border-input-seahawks">@</div>
+                          <input type="text" #username="ngModel" ngModel name="username" class="form-control border-input-seahawks" id="inlineFormInputGroup" placeholder="Username">
+                        </div>
+                      </div>
+                      <div class="col-auto mb-20 form-group">
+                          <label class="sr-only" for="inlineFormInput">Password</label>
+                          <input type="password" #password="ngModel" ngModel name="password" class="form-control mb-2 mb-sm-0 border-input-seahawks" id="inlineFormInput" placeholder="Password">
+                      </div>
+                      <div class="col-auto mb-20 form-group">
+                            <input type="submit" class="btn btn-success" value="Sign in">
+                      </div>
+                      
+                  </form>
+                </div>
+                
+              </div></div>
+          </div>
+             
+      </div>     
+    </div>
+    <!-- end main-content -->

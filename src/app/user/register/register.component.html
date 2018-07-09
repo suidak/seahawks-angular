@@ -1,0 +1,244 @@
+<style>
+  /* Make circles that indicate the steps of the form: */
+
+  .step {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbbbbb;
+    border: none;
+    border-radius: 50%;
+    display: inline-block;
+    opacity: 0.5;
+  }
+
+  .step.active {
+    opacity: 1;
+  }
+</style>
+<app-header></app-header>
+<!-- Start main-content -->
+<div class="main-content">
+  <!-- Section: inner-header -->
+  <section class="inner-header divider parallax layer-overlay overlay-white-8" style="background-image: url(../../../assets/images/bg/bg6.jpg);"
+    data-bg-img="../../../assets/images/bg/bg6.jpg">
+    <div class="container pt-60 pb-60">
+      <!-- Section Content -->
+      <div class="section-content">
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <h2 class="title">Registration</h2>
+            <ol class="breadcrumb text-center text-black mt-10">
+              <li>
+                <a href="#">Home</a>
+              </li>
+              <li class="active text-theme-colored">Registration</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-content">
+        <div class="row vdivide">
+          <form (ngSubmit)="registerAsMember(form_register)" [formGroup]="form_register">
+            <div class="" style="right: -3%;">
+              <div class="shipping-details" style="width: 572px;
+                margin-left: 23%;">
+                <h3 class="mb-30"> Subscribe as a member</h3>
+                <div class="form-group" [ngClass]="displayFieldCss('username')">
+                  <label for="checkuot-form-cname">Username</label>
+                  <input formControlName="username" id="checkuot-form-cname" type="text" class="form-control" placeholder="choose an username">
+                  <app-field-error [displayError]="isFieldValid('username')" *ngIf="username?.errors?.required" errorMsg="This field is required">
+                  </app-field-error>
+                  <app-field-error [displayError]="isFieldValid('username')" *ngIf="username?.errors?.minlength" errorMsg="6 caracters obligatory">
+                  </app-field-error>
+                </div>
+                <div class="form-group" [ngClass]="displayFieldCss('email')">
+                  <label for="checkuot-form-email">Email Address</label>
+                  <input id="checkuot-form-email" formControlName="email" type="email" class="form-control" placeholder="Email Address">
+                  <app-field-error [displayError]="isFieldValid('email')" *ngIf="email?.errors?.required" errorMsg="This field is required">
+                  </app-field-error>
+                  <app-field-error [displayError]="isFieldValid('email')" *ngIf="form_register.hasError('email', 'email') && form_register.get('email').touched"
+                    errorMsg="this is not an email address">
+                  </app-field-error>
+                </div>
+                <div class="form-group col-md-6" [ngClass]="displayFieldCss('password')" style="left: -3%;">
+                  <label for="checkuot-form-address">Password</label>
+                  <input formControlName="password" id="password" type="password" class="form-control" placeholder="Type password" name="password">
+                  <app-field-error [displayError]="isFieldValid('password')" *ngIf="password?.errors?.required" errorMsg="This field is required">
+                  </app-field-error>
+                  <app-field-error [displayError]="isFieldValid('password')" *ngIf="password?.errors?.minlength" errorMsg="8 caracters obligatory">
+                  </app-field-error>
+                </div>
+                <div class="form-group col-md-6" style="right: -3%;" [ngClass]="matchedFieldCss('password','confirmPassword')">
+                  <label for="checkuot-form-address">Confirm Password</label>
+                  <input id="checkuot-form-address" formControlName="confirmPassword" type="password" class="form-control" placeholder="Type password"
+                    id="confirmPassword" required  name="confirmPassword">
+                  <app-field-error 
+                  [displayError]="isMatched('password','confirmPassword')"
+                    errorMsg=" Passwords did not match">
+                  </app-field-error>
+                </div>
+                <br>
+                <div class="form-group" [ngClass]="displayFieldCss('phoneNumber')">
+                  <label for="checkuot-form-email">Phone number</label>
+                  <input formControlName="phoneNumber" id="checkuot-form-email" class="form-control" placeholder="Phone number" pattern="[0-9]*"
+                    minlength="8" maxlength="8">
+                  <app-field-error [displayError]="isFieldValid('phoneNumber')" *ngIf="phoneNumber?.errors?.required" errorMsg="This field is required">
+                  </app-field-error>
+                  <app-field-error [displayError]="isFieldValid('phoneNumber')" [hidden]="!phoneNumber.hasError('maxlength')" errorMsg="must be 8 caracters field">
+                  </app-field-error>
+
+                  <app-field-error [displayError]="isFieldValid('phoneNumber')" [hidden]="!phoneNumber.hasError('minlength')" errorMsg="must be 8 caracters field">
+                  </app-field-error>
+                  <app-field-error [displayError]="isFieldValid('phoneNumber')" [hidden]="!phoneNumber.hasError('pattern')" errorMsg="Only numbers">
+                  </app-field-error>
+                </div>
+                <div class="form-group">
+                  <label for="checkuot-form-email">Check the box bellow if you are a vetarinary !</label>
+                  <input type="checkbox" value="Yes"> YES
+                </div>
+                <div class="col-md-12" style="margin-left: -5%;" [ngClass]="displayFieldCss('firstName')">
+                  <div class="form-group col-md-6">
+                    <label for="checkuot-form-cname2">First Name</label>
+                    <input id="checkuot-form-cname2" formControlName="firstName" type="text" class="form-control" placeholder="First Name">
+                    <app-field-error [displayError]="isFieldValid('firstName')" *ngIf="firstName?.errors?.required" errorMsg="This field is required">
+                    </app-field-error>
+                  </div>
+                  <div class="form-group col-md-6" [ngClass]="displayFieldCss('lastName')">
+                    <label for="checkuot-form-email2">Last Name</label>
+                    <input id="checkuot-form-email2" formControlName="lastName" type="text" class="form-control" placeholder="Last Name">
+                    <app-field-error [displayError]="isFieldValid('lastName')" *ngIf="lastName?.errors?.required" errorMsg="This field is required">
+                    </app-field-error>
+                  </div>
+                </div>
+                
+                <div class="float-label-control col-md-6" style="margin-left: -3%;width: 107%;" >
+                  <p-fileUpload name="file[]" #fileInput url="http://localhost:18080/seahawks-web/rest/users/upload"
+                   accept="image/*" maxFileSize="1000000">
+                  </p-fileUpload>
+                </div>
+              </div>
+              
+                <div class="col-md-12">
+                  <div class="col-md-6 form-group" style="margin-left: 53%;">
+                    <input class="btn btn-flat btn-theme-colored text-uppercase mt-20 mb-sm-30 border-left-theme-color-2-4px" type="submit" value="Subscribe" [disabled]="!form_register.valid">
+                  </div>
+                  <div class="col-md-6" style="margin-left: 38%;">
+                    <span class="step active"></span>
+                    <span class="step"></span>
+                    <span class="step"></span>
+                  </div>
+                </div>
+              </div>
+          </form>
+          </div>
+        </div>
+  <!-- Divider: why choose us 1 -->
+  <section class="divider parallax" data-bg-img="images/bg/bg8.jpg" data-parallax-ratio="0.7">
+    <div class="container pt-0 pb-0">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-4">
+          <div class="bg-white-transparent-9 p-40">
+            <h2 class="mb-30 mt-0 line-height-1">Are
+              <span class="text-theme-colored"> you an organisation ?</span>
+            </h2>
+            <div class="row">
+              <div class="col-xs-12 col-sm-6 col-md-6">
+                <div class="icon-box border-1px p-15 mb-30">
+                  <a class="icon pull-left sm-pull-none flip" href="#">
+                    <i class="flaticon-pet-dog-1 text-theme-colored"></i>
+                  </a>
+                  <div class="ml-70 ml-sm-0">
+                    <h5 class="icon-box-title mt-15 mb-5 text-uppercase">Caring about animal</h5>
+                    <p>Animal protectors.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-6 col-md-6">
+                <div class="icon-box border-1px p-15 mb-30">
+                  <a class="icon pull-left sm-pull-none flip" href="#">
+                    <i class="flaticon-pet-people text-theme-colored"></i>
+                  </a>
+                  <div class="ml-70 ml-sm-0">
+                    <h5 class="icon-box-title mt-15 mb-5 text-uppercase">Customer support</h5>
+                    <p>You have adoption offers.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-6 col-md-6">
+                <div class="icon-box border-1px p-15 mb-30">
+                  <a class="icon pull-left sm-pull-none flip" href="#">
+                    <i class="flaticon-pet-emergency-ambulance text-theme-colored"></i>
+                  </a>
+                  <div class="ml-70 ml-sm-0">
+                    <h5 class="icon-box-title mt-15 mb-5 text-uppercase">Emergency services</h5>
+                    <p>Intervene in case of emergency.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-6 col-md-6">
+                <div class="icon-box border-1px p-15 mb-30">
+                  <a class="icon pull-left sm-pull-none flip" href="#">
+                    <i class="flaticon-pet-animal text-theme-colored"></i>
+                  </a>
+                  <div class="ml-70 ml-sm-0">
+                    <h5 class="icon-box-title mt-15 mb-5 text-uppercase">Veterinary help</h5>
+                    <p>You have a team of vets.</p>
+                  </div>
+                </div>
+              </div>
+              <div style="margin-right: 65px;
+                margin-left: 27%;">
+                <a routerLink="/register-org" class="btn btn-flat btn-theme-colored text-uppercase mt-20 mb-sm-30 border-left-theme-color-2-4px ">Click to Subscribe as organisation</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  </div>
+  <!-- end main-content -->
+
+
+
+
+
+
+
+  <!--
+
+<form (ngSubmit)="registerOrg(username.value,email.value,password.value,photo.value,phoneNumber.value,vet.checked,orgName.value,foundDate.value)">
+  <label>Username</label><br>
+  <input type="text" #username="ngModel" ngModel name="username"><br>
+
+  <label>Email</label><br>
+  <input type="text" #email="ngModel" ngModel name="email"><br>
+
+  <label>Password</label><br>
+  <input type="text" #password="ngModel" ngModel name="password"><br>
+
+  <label>Photo</label><br>
+  <input type="text" #photo="ngModel" ngModel name="photo"><br>
+
+  <label>Phone number</label><br>
+  <input type="text" #phoneNumber="ngModel" ngModel name="phoneNumber"><br>
+
+  <label>Are you a vetarinary</label><br>
+  <input type="radio" #vet="ngModel" ngModel name="vet" value="Yes" > YES 
+  
+
+  <label>Organisation name </label><br>
+  <input type="text" #orgName="ngModel" ngModel name="orgName"><br>
+
+  <label>Found date</label><br>
+  <input type="date" #foundDate="ngModel" ngModel name="foundDate" ><br>
+  
+  <input type="submit" value="Subscribe">
+</form>
+-->

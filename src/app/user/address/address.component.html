@@ -1,0 +1,144 @@
+<style>
+  /* Make circles that indicate the steps of the form: */
+  .step {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbbbbb;
+    border: none;  
+    border-radius: 50%;
+    display: inline-block;
+    opacity: 0.5;
+  }
+
+  .step.active {
+    opacity: 1;
+  }
+</style>
+<app-header></app-header>
+<!-- Start main-content -->
+<div class="main-content">
+<!-- Section: inner-header -->
+<section class="inner-header divider parallax layer-overlay overlay-white-8" style="background-image: url(../../../assets/images/bg/bg6.jpg);" data-bg-img="../../../assets/images/bg/bg6.jpg">
+  <div class="container pt-60 pb-60">
+    <!-- Section Content -->
+    <div class="section-content">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h2 class="title">Registration</h2>
+          <ol class="breadcrumb text-center text-black mt-10">
+            <li><a href="#">Home</a></li>
+            <li class="active text-theme-colored">Registration</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-content">
+      <div class="row vdivide">
+            <form (ngSubmit)="locateYoursef(form_address)"  [formGroup]="form_address">
+            <div class="" style="right: -3%;">
+              <div class="shipping-details" style="width: 572px;
+              margin-left: 23%;">
+                <h3 class="mb-30"> Locate yourself !</h3>
+                  <div class="form-group" [ngClass]="displayFieldCss('country')">
+                    <label for="checkuot-form-cname">Country</label><br>
+                    <select formControlName="country"  class="form-control required valid">
+                      <option value="AF">Afghanistan</option>
+                      <option value="AX">Åland Islands</option>
+                      <option value="AL">Albania</option>
+                      <option value="DZ">Algeria</option>
+                      <option value="AS">American Samoa</option>
+                      <option value="AD">Andorra</option>
+                      <option value="AO">Angola</option>
+                      <option value="AI">Anguilla</option>
+                      <option value="AQ">Antarctica</option>
+                      <option value="AG">Antigua and Barbuda</option>
+                      <option value="AR">Argentina</option>
+                      <option value="AM">Armenia</option>
+                      <option value="AW">Aruba</option>
+                      <option value="AU">Tunisia</option>
+                      <option value="AU">Egypte</option>
+                      <option value="AU">Lebanon</option>
+                      <option value="AU">Maroc</option>
+                      <option value="AU">France</option>
+                    </select>
+                    <app-field-error [displayError]="isFieldValid('country')" *ngIf="country?.errors?.required" errorMsg="This field is required">
+                    </app-field-error>
+                  </div>
+                  <div class="form-group" [ngClass]="displayFieldCss('street')">
+                    <label for="checkuot-form-email">Street</label>
+                    <input formControlName="street" id="checkuot-form-email"  type="text" class="form-control" placeholder="Street">
+                    <app-field-error [displayError]="isFieldValid('street')" *ngIf="street?.errors?.required" errorMsg="This field is required">
+                    </app-field-error>
+                    <app-field-error [displayError]="isFieldValid('street')" *ngIf="street?.errors?.minlength" errorMsg="8 caracters obligatory">
+                    </app-field-error>
+                  </div>
+                  <div class="form-group col-md-6" [ngClass]="displayFieldCss('city')" style="left: -3%;">
+                    <label for="checkuot-form-address">City</label>
+                    <input formControlName="city" id="checkuot-form-address" id="city" type="text" class="form-control" placeholder="City">
+                    <app-field-error [displayError]="isFieldValid('city')" *ngIf="city?.errors?.required" errorMsg="This field is required">
+                    </app-field-error>
+                    <app-field-error [displayError]="isFieldValid('city')" *ngIf="city?.errors?.minlength" errorMsg="8 caracters obligatory">
+                    </app-field-error>
+                  </div>
+                  <div class="form-group col-md-6" [ngClass]="displayFieldCss('state')" style="right: -3%;">
+                    <label for="checkuot-form-address">State</label>
+                    <input formControlName="state" id="checkuot-form-address" type="text" id="state" class="form-control" placeholder="State">
+                    <app-field-error [displayError]="isFieldValid('state')" *ngIf="state?.errors?.required" errorMsg="This field is required">
+                    </app-field-error>
+                    <app-field-error [displayError]="isFieldValid('state')" *ngIf="state?.errors?.minlength" errorMsg="8 caracters obligatory">
+                    </app-field-error>
+                  </div>
+                  <div class="form-group" [ngClass]="displayFieldCss('zip')">
+                    <label for="checkuot-form-email">Zip code </label>
+                    <input formControlName="zip" id="checkuot-form-email"  class="form-control" placeholder="ZIP code"
+                    pattern="[0-9]*"
+                    minlength="4" maxlength="4">
+                    <app-field-error [displayError]="isFieldValid('zip')" *ngIf="zip?.errors?.required" errorMsg="This field is required">
+                    </app-field-error>
+                    <app-field-error [displayError]="isFieldValid('zip')" [hidden]="!zip.hasError('maxlength')" errorMsg="must be 4 caracters field">
+                    </app-field-error>
+  
+                    <app-field-error [displayError]="isFieldValid('zip')" [hidden]="!zip.hasError('minlength')" errorMsg="must be 4 caracters field">
+                    </app-field-error>
+                    <app-field-error [displayError]="isFieldValid('zip')" [hidden]="!zip.hasError('pattern')" errorMsg="Only numbers">
+                    </app-field-error>
+                  </div>
+                  
+                  
+              </div>
+              <div class="col-md-12">
+                
+                <div class="col-md-6 form-group" style="margin-left: 53%;">
+                    <input class="btn btn-flat btn-theme-colored text-uppercase mt-20 mb-sm-30 border-left-theme-color-2-4px" type="submit" value="Save" [disabled]="!form_address.valid">
+                </div>
+                <div class="col-md-6" style="margin-left: 38%;">
+                    <span class="step"></span>
+                    <span class="step active"></span>
+                    <span class="step"></span>
+                </div>
+            </div>
+              
+            <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+            
+              
+            
+            </div>
+        </form>
+      </div>
+      </div>
+    </div>
+</section>
+
+</div>
+<!-- end main-content -->
+
+
+
+
+

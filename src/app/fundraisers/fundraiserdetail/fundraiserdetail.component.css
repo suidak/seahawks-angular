@@ -1,0 +1,39 @@
+.pet{
+    width: 755px;
+    height: 480px;
+}
+.donate{
+    margin-top: 15px;
+    width:350px;
+}
+.raised{
+    
+    color: #352E2E;
+}
+.heart {
+    
+    color: #e00;
+   
+    animation: beat .25s infinite alternate;
+    transform-origin: center;
+}
+@keyframes beat{
+    to { transform: scale(1.4); }
+}
+.star {
+    position: relative;  
+    display: inline-block;
+    font-size: 3rem;
+    color: #d3d3d3;
+  }
+  .full {
+    color: red;
+  }
+  .half {
+    position: absolute;
+    display: inline-block;
+    overflow: hidden;
+    color: red;
+  }
+
+  

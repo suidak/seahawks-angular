@@ -1,0 +1,11 @@
+form td { padding: 0 3px 3px 0; }
+
+#animalTab th{ padding-left: 3px; }
+
+#animalTab td{ padding-left: 3px; }
+
+#animalTab { border-color: lightgrey !important; }
+
+#animalTab button { border-radius: 0%; width:100%; }
+
+.td-noborder { border: 0 !important; }

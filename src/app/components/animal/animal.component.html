@@ -1,0 +1,125 @@
+<app-header></app-header>
+
+<div class="container">
+  <br>
+  <div class="alert alert-info">Our users have on average {{ avgPetsPerUser }} pets! It's time for you to adopt and partake in the activities of our great
+    community!
+  </div>
+
+  <div class="alert alert-success">The MOST adopted animal on our website so far is the {{ mostAdoptedSpecie }} with {{ mostAdoptions }} adoptions so far!</div>
+
+  <h3>Number of adoptions per specie</h3>
+  <table class="table">
+    <tr>
+      <th>Species</th>
+      <th>Number of adoptions</th>
+    </tr>
+    <tr *ngFor="let s of species; let i = index;">
+      <td>{{ s }}</td>
+      <td>{{ nbrAdoptions[i] }}</td>
+    </tr>
+  </table>
+</div>
+
+<h3 class="container">Add an animal to your list and share his pictures with the community!</h3>
+
+<div class="container form-group" *ngIf="loggedin">
+  <form #f="ngForm" (ngSubmit)="addAnimal(status.value, specie.value, breed.value, age.value, height.value, weight.value, 
+  sex.value, f)">
+    <table>
+      <tr>
+        <td>
+          <label>Picture</label>
+        </td>
+        <td>
+          <input type="file" (change)="getFiles($event)" required>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label>Name</label>
+        </td>
+        <td>
+          <input type="text" #status="ngModel" ngModel name="status" id="stat" required>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label>Specie</label>
+        </td>
+        <td>
+          <input type="text" #specie="ngModel" ngModel name="specie" id="spec" required>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label>Breed</label>
+        </td>
+        <td>
+          <input type="text" #breed="ngModel" ngModel name="breed" id="br" required>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label>Age</label>
+        </td>
+        <td>
+          <input type="number" #age="ngModel" ngModel name="age" id="age" required>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label>Height</label>
+        </td>
+        <td>
+          <input type="number" #height="ngModel" ngModel name="height" id="hei" required>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label>Weight</label>
+        </td>
+        <td>
+          <input type="number" #weight="ngModel" ngModel name="weight" id="wei" required>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <label>Sex:</label>
+        </td>
+        <td>
+          <select #sex="ngModel" ngModel name="sex" id="" required>
+            <option *ngFor="let s of sexOptions" [value]="s">{{s}}</option>
+          </select>
+        </td>
+      </tr>
+
+
+    </table>
+
+    <br>
+    <input *ngIf="f.valid && filestring" type="submit" class="btn btn-primary" value="Add Animal" (click)="onSubmitClick()">
+    <input *ngIf="!f.valid || !filestring" type="submit" class="btn btn-primary" value="Add Animal" disabled>
+    <div *ngIf="submitStatus">Animal {{responseStatus}}.</div>
+  </form>
+</div>
+
+<hr>
+
+<div class="container" *ngFor="let pet of myAnimals">
+  <h2>{{ pet.status }} - {{ pet.specie }} - {{ pet.breed }} - {{ pet.age }} months</h2>
+  <form #f="ngForm" (ngSubmit)="addSinglePic(pet.id)">
+    <input type="file" (change)="getFiles($event)" #pic="ngModel" ngModel name="pic" required><br>
+    <input *ngIf="filestring" type="submit" class="btn btn-flat btn-dark" value="Add Picture">
+    <input *ngIf="!filestring" type="submit" class="btn btn-flat btn-dark" value="Add Picture" disabled>
+  </form>
+  <hr>
+  <div *ngFor="let pic of pet.photo" style="display: flex; justify-content:space-between; flex-flow: row wrap;">
+      <div style="width:400px; height: 400px;" > <!--*ngIf="pic.animal.id==pet.id"-->
+          <img src="http://localhost/{{pic.photo}}" alt="animalPic" class="img-responsive img-fullwidth">
+      </div>
+  </div>
+
+  <button class="btn btn-danger" id="{{pet.id}}" (click)="deleteAnimal(pet.id)">Delete</button>
+</div>

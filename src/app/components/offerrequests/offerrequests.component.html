@@ -1,0 +1,30 @@
+<app-header></app-header>
+
+<div class="container" *ngIf="requests">
+  <div class="container" *ngFor="let r of requests">
+    <div *ngFor="let ap of r.offer.animal.photo"> <!--*ngIf="ap.animal.id==r.offer.animal.id"-->
+      <img  src="http://localhost/{{ap.photo}}" alt="">
+    </div>
+  </div>
+  
+  <div class="container">
+    <hr>
+    <h2>Requests</h2>
+    <fieldset *ngFor="let r of requests" style="margin-bottom:20px">
+      <legend>{{ r.offer.animal.status }}</legend>
+      <h3>Status: {{ r.status }}</h3>
+      <h4>Adopter: {{ r.adopter.role == 'Member' ? r.adopter.firstName + " " + r.adopter.lastName : r.adopter.orgName }}</h4>
+      <h5>{{ r.offer.offerDate }}</h5>
+      <p>{{ r.description }}</p>
+  
+      <br>
+      <!-- <span class="alert alert-info" *ngIf="responseText">{{ responseText }}</span> -->
+      <button *ngIf="r.status=='pending'" class="btn btn-success" (click)="processAdoptionRequest(r, true)">Accept Request</button>
+      <button *ngIf="r.status=='pending'" class="btn btn-danger" (click)="processAdoptionRequest(r, false)">Decline Request</button>
+      <hr>
+      <hr>
+    </fieldset>
+  </div>
+</div>
+
+<div class="container alert alert-info" *ngIf="!requests">No requests yet! SoonTM!</div>

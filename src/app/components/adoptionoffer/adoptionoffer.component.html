@@ -1,0 +1,98 @@
+<app-header></app-header>
+
+<div class="container">
+  <button class="btn btn-primary"><a routerLink="/myoffers">View my adoption offers</a></button>
+</div>
+
+<div class="container">
+  <h2>Average adoption price per specie</h2>
+  <table class="table">
+    <tr>
+      <th>Species</th>
+      <th>Average Price</th>
+    </tr>
+    <tr *ngFor="let s of species; let i = index;">
+      <td>{{ s }}</td>
+      <td>{{ avgPrices[i] }}</td>
+    </tr>
+  </table>
+</div>
+
+<div class="container form-group">
+  <form #f="ngForm" (ngSubmit)="getPendingAdoptionOffersBySpecieBreed(specie.value, breed.value)">
+
+    <select #specie="ngModel" ngModel name="specie" id="" required>
+      <option *ngFor="let s of speciesList" [value]="s">{{ s }}</option>
+    </select>
+
+    <select #breed="ngModel" ngModel name="breed" id="" required (click)="getBreeds(specie.value)">
+      <option *ngFor="let b of breedsList" [value]="b">{{ b }}</option>
+    </select>
+
+    <input *ngIf="specie.value" type="submit" class="btn btn-primary" value="Search">
+    <input *ngIf="!specie.value" type="submit" class="btn btn-primary" value="Search" disabled>
+    <button class="btn btn-warning" (click)="getPendingOffers(f)">Reset</button><br><br>
+    <span class="alert alert-danger" *ngIf="!specie.value && specie.touched">Please choose a specie!</span>
+
+  </form>
+</div>
+
+<section>
+  <div class="container">
+    <div class="row multi-row-clearfix">
+      <div class="blog-posts">
+        <div class="col-md-4" *ngFor="let a of adoptionOffers">
+          <article class="{{ a.animal.owner.id==currentUser.id? hidden : clearfix }} post clearfix mb-30 bg-lighter" style="height:497.5px; display:flex; flex-direction: column; justify-content: space-between; margin-bottom:0;">
+            <div class="entry-header">
+              <div class="post-thumb thumb" style="margin:0" *ngFor="let ap of a.animal.photo"> <!--*ngIf="ap.animal.id==a.animal.id"-->
+                <img  src="http://localhost/{{ap.photo}}" alt="animalPic" class="img-responsive img-fullwidth">
+              </div>
+            </div>
+            <div class="entry-content border-1px p-20 pr-10">
+              <div class="entry-meta media mt-0 no-bg no-border">
+                <div class="entry-date media-left text-center flip bg-theme-colored pt-5 pr-15 pb-5 pl-15">
+                  <ul>
+                    <li class="font-16 text-white font-weight-600">{{ a.offerDate | date: 'dd' }}</li>
+                    <li class="font-12 text-white text-uppercase" style="text-transform:uppercase; font-weight:bold;">{{ a.offerDate | date: 'MMM' }}</li>
+                    <li class="font-16 text-white font-weight-600">{{ a.offerDate | date: 'y' }}</li>
+                  </ul>
+                </div>
+                <div class="media-body pl-15">
+                  <div class="event-content pull-left flip">
+                    <h4 class="entry-title text-white text-uppercase m-0 mt-5">
+                      {{ a.animal.status }}
+                    </h4>
+                    <h5 class="entry-title text-gray-darkgray m-0 mt-5">
+                      Owner: {{ a.animal.owner.role == 'Member' ? a.animal.owner.firstName + " " + a.animal.owner.lastName : "Organization - " + a.animal.owner.orgName }}
+                    </h5>
+                    <h5 class="entry-title text-gray-darkgray m-0 mt-5">
+                      {{ "Specie:" + a.animal.specie }}
+                    </h5>
+                    <h5 class="entry-title text-gray-darkgray m-0 mt-5">
+                      {{ "Breed: " + a.animal.breed }}
+                    </h5>
+                    <span class="mb-10 text-gray-darkgray mr-10 font-13">
+                      <i class="fa fa-commenting-o mr-5 text-theme-colored"></i>
+                    </span>
+                    <span class="mb-10 text-gray-darkgray mr-10 font-13">
+                      <i class="fa fa-heart-o mr-5 text-theme-colored"></i>
+                    </span>
+                    <span class="mb-10 text-gray-darkgray mr-10 font-13">
+                      <i class="fa fa-eye mr-5 text-theme-colored" aria-hidden="true"></i>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <p class="mt-10"></p>
+
+              <div class="clearfix"></div>
+            </div>
+            <button class="btn btn-theme-colored btn-flat" style="padding-bottom:20px;">
+                <a routerLink="/requestadoption" [queryParams]="{ id: a.id }">Request adoption</a></button>
+          </article>
+        </div>
+        <div *ngIf="!adoptionOffers" class="alert alert-warning">No offers available!</div>
+      </div>
+    </div>
+  </div>
+</section>

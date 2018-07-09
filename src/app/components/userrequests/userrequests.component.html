@@ -1,0 +1,21 @@
+<app-header></app-header>
+
+<div class="container" *ngIf="requests">
+  <fieldset *ngFor="let r of requests" style="margin-bottom:20px">
+    <legend>{{ r.offer.animal.status }}</legend>
+    <h3>Status: {{ r.status }}</h3>
+    <h4>Owner: {{ r.offer.animal.owner.role == 'Member' ? r.offer.animal.owner.firstName + " " + r.offer.animal.owner.lastName : "Organization - " + r.offer.animal.owner.orgName }}</h4>
+    <h5>{{ r.offer.offerDate }}</h5>
+    <p>{{ r.description }}</p>
+
+    <button *ngIf="r.status=='pending'" class="btn btn-dark btn-flat">Edit Request</button>
+    <button *ngIf="r.status=='pending'" class="btn btn-danger" (click)="deleteAdoptionRequest(r.id)">Delete Request</button>
+
+    <div *ngFor="let ap of r.offer.animal.photo"> <!--*ngIf="ap.animal.id==r.offer.animal.id"-->
+        <img  src="http://localhost/{{ap.photo}}" alt="">
+    </div>
+    <hr><hr>
+  </fieldset>
+</div>
+
+<div class="container alert alert-info" *ngIf="!requests">You have no requests left!</div>

@@ -1,0 +1,87 @@
+<app-header></app-header>
+
+<div class="container">
+  <h3>Fill in this form to make a new adoption offer</h3>
+</div>
+
+<div class="container" *ngIf="!noanimals">
+  <div class="form-group">
+    <form #f="ngForm" (ngSubmit)="addAdoptionOffer(animal.value, price.value)">
+  
+      <select #animal="ngModel" ngModel name="animal" id="" required>
+        <option *ngFor="let pet of unlistedAnimals" [value]="pet.id">{{ pet.specie + " - " + pet.status }}</option>
+      </select>
+
+      <input type="number" #price="ngModel" ngModel name="price" required placeholder="Enter adoption price">
+      <!-- add input control, numbers -->
+
+      <br>
+      <input *ngIf="f.valid" type="submit" class="btn btn-primary" value="Add Adoption">
+      <input *ngIf="!f.valid" type="submit" class="btn btn-primary" value="Add Adoption" disabled>
+    </form>
+  </div>
+</div>
+
+<div class="alert alert-warning container" *ngIf="noanimals">You have no unlisted animals, please add one to your collection and try again!</div>
+
+<section>
+  <div class="container">
+      <h3>Your adoption offers</h3>
+    <div class="row multi-row-clearfix">
+      <div class="blog-posts">
+        <div class="col-md-4" *ngFor="let a of adoptionOffers; let i = index">
+          <article class="post clearfix mb-30 bg-lighter" style="height:497.5px; display:flex; flex-direction: column; justify-content: space-between; margin-bottom:0;">
+            <div class="entry-header">
+              <div class="post-thumb thumb" style="margin:0" *ngFor="let ap of a.animal.photo"><!--*ngIf="ap.animal.id==a.animal.id"-->
+                <img  src="http://localhost/{{ap.photo}}" alt="animalPic" class="img-responsive img-fullwidth">
+              </div>
+            </div>
+            <div class="entry-content border-1px p-20 pr-10">
+              <div class="entry-meta media mt-0 no-bg no-border">
+                <div class="entry-date media-left text-center flip bg-theme-colored pt-5 pr-15 pb-5 pl-15">
+                  <ul>
+                    <li class="font-16 text-white font-weight-600">{{ a.offerDate | date: 'dd' }}</li>
+                    <li class="font-12 text-white text-uppercase" style="text-transform:uppercase; font-weight:bold;">{{ a.offerDate | date: 'MMM' }}</li>
+                    <li class="font-16 text-white font-weight-600">{{ a.offerDate | date: 'y' }}</li>
+                  </ul>
+                </div>
+                <div class="media-body pl-15">
+                  <div class="event-content pull-left flip">
+                    <h4 class="entry-title text-white text-uppercase m-0 mt-5">
+                      {{ a.animal.status }}
+                    </h4>
+                    <h5 class="entry-title text-gray-darkgray m-0 mt-5">
+                      Owner: {{ a.animal.owner.firstName + " " + a.animal.owner.lastName }}
+                    </h5>
+                    <h5 class="entry-title text-gray-darkgray m-0 mt-5">
+                      {{ "Specie: " + a.animal.specie }}
+                    </h5>
+                    <h5 class="entry-title text-gray-darkgray m-0 mt-5">
+                      {{ "Breed: " + a.animal.breed }}
+                    </h5>
+                    <span class="mb-10 text-gray-darkgray mr-10 font-13">
+                      <i class="fa fa-commenting-o mr-5 text-theme-colored"></i>
+                    </span>
+                    <span class="mb-10 text-gray-darkgray mr-10 font-13">
+                      <i class="fa fa-heart-o mr-5 text-theme-colored"></i>
+                    </span>
+                    <span class="mb-10 text-gray-darkgray mr-10 font-13">
+                      <i class="fa fa-eye mr-5 text-theme-colored" aria-hidden="true"></i>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <p class="mt-10"></p>
+
+              <div class="clearfix"></div>
+            </div>
+            <button class="btn btn-theme-colored btn-flat" style="padding-bottom:20px;">
+                <a routerLink="/offerrequests" [queryParams]="{ offerid: a.id }">View Requests</a></button>
+            <button class="btn btn-theme-colored btn-flat" style="padding-bottom:20px;" *ngIf="a.removable" (click)="deleteOffer(a, i)">Cancel Offer</button>
+          </article>
+        </div>
+        <div *ngIf="!adoptionOffers" class="alert alert-warning">No offers available!</div>
+      </div>
+    </div>
+  </div>
+</section>

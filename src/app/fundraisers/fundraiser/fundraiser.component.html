@@ -1,0 +1,100 @@
+<app-header></app-header>
+<div class="main-content">
+  <div class="container">
+
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9" >
+          
+        <div class="upcoming-events bg-white-f3 mb-20" *ngFor="let d of data | paginate: { itemsPerPage: 3, currentPage: p }">
+          
+          <div class="wow slideInLeft row">
+            <div class="col-sm-4 pr-0 pr-sm-15">
+              <div class="thumb p-15">
+                <img class="img-fullwidth" src="{{d.location}}" alt="Pet img">
+                <div class="" style="margin-top:5px; ">
+                    <a (click)="share(d.location)" class="img-fullwidth btn btn-flat donate btn-primary"><i class="fa fa-facebook" aria-hidden="true"></i> Share on Facebook</a>
+                  </div>
+              </div>
+            </div>
+            <div class="col-sm-4 pl-0 pl-sm-15">
+              <div class="event-details p-15 mt-20">
+                <h4 class="media-heading text-uppercase font-weight-500">{{ d.title }}</h4>
+                <p>{{d.description | textlimit:140}}</p>
+                <a routerLink="/fundraiserdetails" [queryParams]="{ id: d.id }" class="btn btn-flat btn-dark btn-theme-colored btn-sm">Details <i class="fa fa-angle-double-right"></i></a>
+                <a routerLink="/donate" [queryParams]="{ id: d.id }" class="btn btn-flat btn-dark btn-theme-colored btn-sm">Donate <i class="fa fa-heart heart"></i></a>
+              </div>
+              
+            </div>
+            <div class="col-sm-4">
+              <div class="event-count p-15 mt-15">
+                <ul class="event-date list-inline font-16 text-uppercase mt-10 mb-20">
+                  <li class="p-15 mr-5 bg-lightest">{{ d.goal }} TND</li>
+                  
+                </ul>
+                <ul>
+                  <li class="mb-10 text-theme-colored"><i class="fa fa-clock-o mr-5"></i>Ends on {{ d.endDate | date:fullDate }} </li>
+                  <li class="text-theme-colored"><i class="fa fa-map-marker mr-5"></i>{{d.launcher.address.street}} {{d.launcher.address.city}} </li>
+                </ul>
+                <button class="btn btn-flat btn-dark btn-theme-colored btn-sm"  *ngIf="d.launcher.id == connectedUserId" (click)="removeFundraiser(d)">Remove Fundraiser</button>
+                  
+              </div>
+            </div>
+          </div>
+        </div>
+        <pagination-controls (pageChange)="p = $event" center></pagination-controls>
+        
+      
+      </div>
+      
+      <div class="col-md-3">
+        
+        <div class="sidebar sidebar-right mt-sm-30">
+          <div class="widget">
+            <h5 class="widget-title line-bottom">Search fundraisers</h5>
+            <div class="search-form">
+              <form>
+                <div class="input-group">
+                  <input name="searchTerm" [(ngModel)]="searchTerm"  (input)="searchFundraisers($event)" type="text" placeholder="Type a hint" class="form-control search-input">
+                  <span class="input-group-btn">
+                  <button type="submit" class="btn search-button"><i class="fa fa-search"></i></button>
+                  </span>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="widget">
+            <h5 class="widget-title line-bottom">Start Yours Now</h5>
+            <a routerLink="/addfundraiser" style="width:100%" class="btn btn-flat btn-dark btn-theme-colored btn-lg">Start Fundraiser</a>
+          </div>
+         <app-chat (hideChatEvent)="hideChat($event)" *ngIf="toggled"></app-chat>
+          
+
+         
+
+          <div class="widget">
+              <h5 class="widget-title line-bottom">Ask our ChatBot</h5>
+              <a (click)="toggleChat()" class="btn wow tada" data-wow-duration="1s" data-wow-delay="1s">
+                  <img style="width:200px;height:200px;" src="https://media.licdn.com/mpr/mpr/AAEAAQAAAAAAAA0sAAAAJDE1NTFjN2MxLWZjNjgtNDlkNi1hOTdjLTM1ZjQ5OWJjNGY5NQ.png" alt="chat bot">
+                </a>
+              
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+</div>
+
+</div>
+
+
+

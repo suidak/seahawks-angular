@@ -1,0 +1,75 @@
+<app-header></app-header>
+
+<section *ngIf="offer">
+  <div class="container mt-30 mb-30 pt-30 pb-30">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <div class="blog-posts single-post">
+          <article class="post clearfix mb-0">
+            <div class="entry-header">
+              <div class="post-thumb thumb" *ngFor="let ap of offer.animal.photo"> <!--*ngIf="ap.animal.id==offer.animal.id"-->
+                <img  src="http://localhost/{{ap.photo}}" alt="Animal Pics" class="img-responsive img-fullwidth">
+              </div>
+            </div>
+            <div class="entry-content">
+              <div class="entry-meta media no-bg no-border mt-15 pb-20">
+                <div class="entry-date media-left text-center flip bg-theme-colored pt-5 pr-15 pb-5 pl-15">
+                  <ul>
+                    <li class="font-16 text-white font-weight-600">{{ offer.offerDate | date: 'dd' }}</li>
+                    <li class="font-12 text-white text-uppercase" style="text-transform:uppercase; font-weight:bold;">{{ offer.offerDate | date: 'MMM' }}</li>
+                    <li class="font-12 text-white text-uppercase" style="text-transform:uppercase">{{ offer.offerDate | date: 'y' }}</li>
+                  </ul>
+                </div>
+                <div class="media-body pl-15">
+                  <div class="event-content pull-left flip" style="margin-top:10px;">
+                    <h3 class="entry-title text-white text-uppercase pt-0 mt-0">
+                      <a href="blog-single-right-sidebar.html">{{ offer.animal.status }}</a>
+                    </h3>
+                    <h4 class="entry-title text-white text-uppercase pt-0 mt-0">
+                      <a href="blog-single-right-sidebar.html">Owner: {{ offer.animal.owner.role == 'Member' ? offer.animal.owner.firstName + " " + offer.animal.owner.lastName : "Organization - " + offer.animal.owner.orgName }}</a>
+                    </h4>
+                  </div>
+                </div>
+              </div>
+              <h5 class="mb-15">Requested price for adoption: <span style="color:blue">{{ offer.price }}</span></h5>
+
+              <div class="mt-30 mb-0">
+                <h5 class="pull-left flip mt-10 mr-20 text-theme-colored" style="font-weight:bold">Social Media</h5>
+                <!-- <ul class="styled-icons icon-circled m-0">
+                  <li>
+                    <a href="#" data-bg-color="#3A5795">
+                      <i class="fa fa-facebook" style="color:#3B5998 !important"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" data-bg-color="#55ACEE">
+                      <i class="fa fa-twitter" style="color:#1DA1F2 !important"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" data-bg-color="#A11312">
+                      <i class="fa fa-google-plus" style="color:#DB4437 !important"></i>
+                    </a>
+                  </li>
+                </ul> -->
+                <!-- <div><share-buttons url="http://localhost:4200/requestadoption?id={{offer.id}}"></share-buttons></div> -->
+              </div>
+            </div>
+          </article>
+          <h3>Fill in this form to make a new adoption request</h3>
+          <div class="form-group">
+            <form #f="ngForm" (ngSubmit)="addAdoptionRequest(description.value)">
+
+              <textarea #description="ngModel" ngModel name="description" id="" cols="30" rows="10" required placeholder="Type a message for the owner. Say more :)"></textarea>
+
+              <br>
+              <input *ngIf="f.valid" type="submit" class="btn btn-primary" value="Submit Request">
+              <input *ngIf="!f.valid" type="submit" class="btn btn-primary" value="Submit Request" disabled>
+            </form>
+          </div>
+          <span *ngIf="responseText" class="alert alert-danger">{{ responseText }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

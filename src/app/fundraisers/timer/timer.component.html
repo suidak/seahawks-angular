@@ -1,0 +1,21 @@
+<div class="main-content hidden">
+  <div class="container">
+          <div>
+{{(hoursDisplay ? hoursDisplay : '00') | todays}} : {{(minutesDisplay) && (minutesDisplay <= 59) ? minutesDisplay : '00'}} : {{(secondsDisplay) && (secondsDisplay <= 59) ? secondsDisplay : '00'}} <br/>
+<p class="clock timer">
+          <span class="clock-block">
+            <span class="clock-val">{{(hoursDisplay ? hoursDisplay : '00')}}</span>
+            <span class="clock-unit">hours</span>
+          </span>
+          <span class="clock-block">
+            <span class="clock-val">42</span>
+            <span class="clock-unit">minutes</span>
+          </span>
+          <span class="clock-block">
+            <span class="clock-val">08</span>
+            <span class="clock-unit">seconds</span>
+          </span>
+        </p>
+</div>       
+</div>
+</div>

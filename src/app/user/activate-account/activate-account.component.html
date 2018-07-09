@@ -1,0 +1,85 @@
+<style>
+  /* Make circles that indicate the steps of the form: */
+  .step {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbbbbb;
+    border: none;  
+    border-radius: 50%;
+    display: inline-block;
+    opacity: 0.5;
+  }
+
+  .step.active {
+    opacity: 1;
+  }
+</style>
+<app-header></app-header>
+<!-- Start main-content -->
+<div class="main-content">
+<!-- Section: inner-header -->
+<section class="inner-header divider parallax layer-overlay overlay-white-8" style="background-image: url(../../../assets/images/bg/bg6.jpg);" data-bg-img="../../../assets/images/bg/bg6.jpg">
+  <div class="container pt-60 pb-60">
+    <!-- Section Content -->
+    <div class="section-content">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h2 class="title">Welcome back</h2>
+          <ol class="breadcrumb text-center text-black mt-10">
+            <li><a href="#">Home</a></li>
+            <li class="active text-theme-colored">Account activation</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-content">
+      <div class="row vdivide">
+            <form (ngSubmit)="activate(token)">
+            <div class="" style="right: -3%;">
+              <div class="shipping-details" style="width: 572px;
+              margin-left: 23%;">
+                <h3 class="mb-30"> Account activation !</h3>
+                  <div class="form-group">
+                    <label for="checkuot-form-cname">An email has been sent, so check your 
+                      email box, get the token and reactivate your account.</label><br>
+                  </div>
+                  <div class="form-group">
+                    <label for="checkuot-form-email">Activation code</label>
+                    <input id="checkuot-form-email" #token="ngModel" ngModel type="text" name="token"  class="form-control" placeholder="Enter activation code">
+                  </div>
+                  
+                  
+                  
+              </div>
+              <div class="col-md-12">
+                
+                <div class="col-md-6 form-group" style="margin-left: 53%;">
+                    <input class="btn btn-flat btn-theme-colored text-uppercase mt-20 mb-sm-30 border-left-theme-color-2-4px" type="submit" value="Save">
+                </div>
+                
+            </div>
+              
+            <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+            
+              
+            
+            </div>
+        </form>
+      </div>
+      </div>
+    </div>
+</section>
+
+</div>
+<!-- end main-content -->
+
+
+
+
+

@@ -1,0 +1,15 @@
+
+<div class="chatdiv wow slideInRight" data-wow-duration="1s" data-wow-delay="0s">
+  <a class="closebtn" (click)="hideChat()">&times;</a>
+  <ng-container *ngFor="let message of messages | async">
+    <div class="message" [ngClass]="{ 'from': message.sentBy === 'bot',
+                                      'to':   message.sentBy === 'user' }">
+      {{ message.content }}
+    </div>
+  </ng-container>
+  
+  <input placeholder="Ask me here..." [(ngModel)]="formValue" (keyup.enter)="sendMessage()" class="form-control message" type="text" style="margin-bottom:10px;">
+  <button (click)="sendMessage()" class="btn hidden disabled btn-dark btn-sm btn-block mt-20 pt-10 pb-10">Send</button>
+  </div>
+  
+  

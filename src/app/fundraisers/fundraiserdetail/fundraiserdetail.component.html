@@ -1,0 +1,99 @@
+<app-header></app-header>
+<div class="main-content">
+  <div class="container">
+
+<section class="bg-theme-colored hidden">
+  <div class="container pt-40 pb-40">
+    <div class="row text-center">
+      <div class="col-md-12">
+        <h2 id="basic-coupon-clock" class="text-white"> 
+            
+          <app-timer [fundraiser]="fundraiserid"></app-timer>
+          Kindness is powerful
+        </h2>
+        
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="owl-carousel-1col" data-nav="true">
+              <div class="item"><img class="pet" src="{{fundraiser.location}}" alt=""></div>
+            </div>
+          </div>
+      <div class="col-md-4">
+        <ul>
+          <li><h2>{{ fundraiser.title }}</h2></li>
+          <li>
+            
+            <p>Organized by: {{ fundraiser.launcher.firstName }} {{ fundraiser.launcher.lastName }}</p>
+          </li>
+          <li>
+            
+            <p><i class="fa fa-map-marker mr-5 text-theme-colored"></i> {{ fundraiser.launcher.address.street }} {{ fundraiser.launcher.address.city }} , {{ fundraiser.launcher.address.state }}</p>
+          </li>
+          <li>
+            <p><i class="fa fa-clock-o mr-5 text-theme-colored"></i> Started on {{ fundraiser.startDate | date:shortDate }}</p>
+          </li>
+          <li>
+            <p><i class="fa fa-clock-o mr-5 text-theme-colored"></i> Ends on {{ fundraiser.endDate | date:shortDate }}</p>
+          </li>
+          <li>
+              
+          </li>
+          <!--<li>
+            <h5>Share:</h5>
+            <div class="styled-icons icon-sm icon-gray icon-circled">
+              <a href="#"><i class="fa fa-facebook"></i></a>
+              <a href="#"><i class="fa fa-twitter"></i></a>
+              <a href="#"><i class="fa fa-instagram"></i></a>
+              <a href="#"><i class="fa fa-google-plus"></i></a>
+            </div>
+          </li>-->
+          
+        </ul>
+        <span class="raised"><b>{{ fundraiser.collectedDonations }} TND RAISED </b></span> of {{ fundraiser.goal }} TND goal<br>
+        
+        <!--<ngb-progressbar type="warning" [value]="50" [striped]="true" [animated]="false"><i>50 %</i></ngb-progressbar>-->
+        <ng-template #t let-fill="fill">
+            <span *ngIf="fill === 100" class="star full"><i class="fa fa-heart"></i></span>
+            <span *ngIf="fill === 0" class="star"><i class="fa fa-heart"></i></span>
+            <span *ngIf="fill < 100 && fill > 0" class="star">
+              <span class="half" [style.width.%]="fill"><i class="fa fa-heart"></i></span><i class="fa fa-heart"></i>
+            </span>
+          </ng-template>
+          
+          <!--<ngb-rating [(rate)]="currentRate" [starTemplate]="t" [readonly]="true" max="5"></ngb-rating>-->
+      </div>
+      <div class="row">
+          <a routerLink="/donate" [queryParams]="{ id: fundraiserid }" class="donate btn btn-flat btn-dark btn-theme-colored">DONATE NOW <i class="fa fa-heart heart"></i></a>
+          <br><a (click)="share(fundraiser.location)" class="btn btn-flat donate btn-primary"><i class="fa fa-facebook" aria-hidden="true"></i> Share on Facebook</a> 
+        
+        </div>
+        
+      
+    </div>
+    <div class="row mt-60">
+      <div class="col-md-6">
+        <h4 class="mt-0">The Story</h4>
+        <p>{{ fundraiser.description }}</p>
+      </div>
+      <div class="col-md-6">
+        <blockquote>
+          <p>Saving one pet won't change the world, but for that one pet the world will change forever.</p>
+          <footer>{{fundraiser.launcher.firstName}} {{fundraiser.launcher.lastName}}</footer>
+        </blockquote>
+      </div>
+    </div>
+    
+    
+  </div>
+</section>
+
+</div>
+</div>

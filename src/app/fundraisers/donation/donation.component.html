@@ -1,0 +1,73 @@
+<app-header></app-header>
+<div class="main-content  background-cats">
+  <div class="container">
+<section id="upcoming-events" class="" data-bg-img="../../assets/images/bg/bg1.jpg">
+<div class="container pb-50 pt-80">
+  <div class="section-content">
+    <div class="row">
+      <div class="col-sm-8 col-md-8 col-lg-8">
+          <section class="divider parallax layer-overlay" data-bg-img="../../assets/images/bg/bg1.jpg">
+            <div class="container-fluid">
+              <div class="section-title">
+                <div class="row">
+                  <div *ngIf="!hideForm" class="col-md-6 col-md-offset-3 text-center">
+                    <h3 class="title text-theme-colored">Make a donation</h3>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="wow slideInLeft col-md-6 col-md-offset-3">
+               
+                  <form #f="ngForm" *ngIf="!hideForm" novalidate (ngSubmit)="donate($event)" [formGroup]="stripeTest">
+                    
+                    <input type="text" placeholder="Name" formControlName="name" class="form-control"><br>
+                    <div class="input-group">
+                      <div class="btn-theme-colored input-group-addon">TND</div>
+                      <input type="number" class="form-control" formControlName="amount" placeholder="Amount">
+                      <div class=" btn-theme-colored input-group-addon">.00</div>
+                    </div>
+                    <div id="card-element" class="field" #card></div><br>
+                    <button disabled *ngIf="!f.valid" style="width:100%" class="btn btn-flat btn-dark btn-lg" type="submit">Donate Now</button>
+                    <button *ngIf="f.valid" style="width:100%" class="btn btn-flat btn-dark btn-theme-colored btn-lg" type="submit">Donate Now</button>
+                    
+                    
+                  </form>
+                  <div *ngIf="hideForm" class="col-md-6 col-md-offset-3">
+                    <h3 class="title text-theme-colored">Done! We kindly appreciate your help!</h3>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+      </div>
+      
+      <div class="col-sm-6 col-md-4 col-lg-4">
+        <div class="schedule-box maxwidth500 bg-light mb-30">
+          <div  class="thumb">
+            <img class="img-fullwidth" alt="" src="{{fundraiser.location}}">
+            <div class="overlay">
+              <a routerLink="/fundraiserdetails" [queryParams]="{ id: fundraiser.id }" ><i class="fa fa-info mr-5" aria-hidden="true"></i></a>
+            </div>
+          </div>
+          <div class="schedule-details clearfix p-15 pt-10">
+            <h5 class="font-16 title"><a href="#">{{fundraiser.title}} <i class="fa fa-heart heart"></i></a></h5>
+            <ul class="list-inline font-11 mb-20">
+              <li><i class="fa fa-calendar mr-5 text-theme-colored"></i> {{ fundraiser.endDate | date:shortDate }}</li>
+              <li><i class="fa fa-map-marker mr-5 text-theme-colored"></i> {{ fundraiser.launcher.address.street }} {{ fundraiser.launcher.address.city }}</li>
+            </ul>
+            <p>{{fundraiser.description}}</p>
+            <div class="mt-10">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+</section>
+
+</div>
+</div>

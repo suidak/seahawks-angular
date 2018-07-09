@@ -1,0 +1,64 @@
+<app-header></app-header>
+<!-- Section: blog -->
+<section id="blog" class="layer-overlay overlay-dark-8" data-bg-img="../../../assets/images/pattern/pt19.jpg" style="background-image: url('../../../assets/images/pattern/pt19.jpg');">
+  <div class="container pb-10">
+    <div class="section-title text-center">
+      <div class="row">
+        <div class="col-md-12">
+          <h2 class="mt-0 line-height-1" style="color:antiquewhite;">Our
+            <span class="text-theme-colored"> organisations</span>
+          </h2>
+        </div>
+      </div>
+    </div>
+    <div class="section-content">
+      <div class="row" >
+        <div class="col-md-12" >
+          <!-- Portfolio Gallery Grid -->
+          <div id="grid" class="gallery-isotope grid-3 gutter-30 clearfix" >
+            <!-- Portfolio Item Start -->
+            <div class="gallery-item photography branding col-md-3" *ngFor="let o of orgs" >
+              <div class="thumb">
+                <img class="img-fullwidth" src="../../../assets/uploads/users/{{o.photo}}" alt="project" style="height: 225px;">
+                <div class="overlay-shade"></div>
+                <div class="icons-holder">
+                  <div class="icons-holder-inner">
+                    <div class="styled-icons icon-sm icon-dark icon-circled icon-theme-colored">
+                      <a data-lightbox="image" href="../../../assets/images/portfolio/p1.jpg">
+                        <i class="fa fa-plus"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <a class="hover-link" data-lightbox="image" >View more</a>
+              </div>
+              <div class="portfolio-description">
+                <h4 class="title mb-5">
+                  <a href="#">{{ o.orgName }}</a>
+                </h4>
+                <div class="org-info" style="display: flex;
+                flex-direction: column;">
+                <span class="mb-10 text-gray-darkgray mr-10 font-13">
+                  <i class="fa fa-phone mr-5 text-theme-colored" style="font-size: 15pt;"></i> 
+                  {{ o.phoneNumber }}</span>
+                <span class="mb-10 text-gray-darkgray mr-10 font-13">
+                    <i class="fa fa-location-arrow  mr-5 text-theme-colored" style="font-size: 15pt;"></i> 
+                    {{ o.address.zip }} {{ o.address.street }} {{ o.address.city }} {{ o.address.state }} - {{ o.address.country }}</span>
+                    <span class="mb-10 text-gray-darkgray mr-10 font-13">
+                        <i class="fa fa-envelope  mr-5 text-theme-colored" style="font-size: 15pt;"></i> 
+                      {{ o.email }}
+                    </span>
+                  </div>
+                    <a href="#" class="btn btn-theme-colored  text-uppercase mt-10" style="margin-left: 20%;
+                    width: 55%;">Details</a>
+
+              </div>
+            </div>
+            <!-- Portfolio Item End -->
+          </div>
+          <!-- End Portfolio Gallery Grid -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
